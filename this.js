@@ -9,56 +9,109 @@ const blue = {
         for (let toy of toys) {
             console.log(`${this.name} plays with ${toy}`);
         }
+    },
+    greet() {
+        alert(`${this.name} SAYS MEOW`)
     }
-}
+};
 
-const rocket = {
-    name: 'Rocket',
-    breed: 'Himalayan'
-}
+document.querySelector('#btn-1').addEventListener('click', blue.greet.bind(blue))
 
-const bDance = blue.dance;
-const boundDance = bDance.bind(blue);
+const btnA = document.querySelector('#a')
+const btnB = document.querySelector('#b')
+const btnC = document.querySelector('#c')
 
-const rocketDance = blue.dance.bind(rocket)
+function popUp(msg) {
+    alert("secret message is" + msg);
+};
+btnA.addEventListener('click', popUp.bind(null, 'Button A says hi'))
+btnB.addEventListener('click', popUp.bind(null, 'Button B says hi'))
+btnC.addEventListener('click', popUp.bind(null, 'Button C says hi'))
 
-const dog = {
-    name: 'Tyson',
-    breed: 'Mini Aussie',
-    dance: rocketDance
-}
 
-const blueDisco = blue.dance.bind(blue, 'disco')
-const bluePlaysWithSox = blue.play.bind(blue, 'left sock', 'right sock')
+const greeter = {
+    msg: 'I like chickenz',
+    sayHi: function () {
 
-function applySalesTax(taxRate, price) {
-    return price + price * taxRate;
-}
+        alert(this.msg);
+    },
+    //     waitAndGreet: function (delay) {
+    //         setTimeout(function () {
+    //             alert(this.msg)
+    //         }.bind(this), delay);
+    //     }
+    // };
+    waitAndGreet: function (delay) {
+        setTimeout(() => {
+            alert(this.msg)
+        }, delay);
+    }
+};
+
+greeter.waitAndGreet(2000);
+
+// btnA.addEventListener('click', function () {
+//     popUp('BUTTON A SAYS HI')
+// });
+// btnB.addEventListener('click', function () {
+//     popUp('BUTTON B SAYS HI')
+// });
+// btnC.addEventListener('click', function () {
+//     popUp('BUTTON C SAYS HI')
+// });
+
+
+
+
+
+// const rocket = {
+
+//     name: 'Rocket',
+//     breed: 'Himalayan'
+// }
+
+// const bDance = blue.dance;
+// const boundDance = bDance.bind(blue);
+
+// const rocketDance = blue.dance.bind(rocket)
+
+// const dog = {
+//     name: 'Tyson',
+//     breed: 'Mini Aussie',
+//     dance: rocketDance
+// }
+
+// const blueDisco = blue.dance.bind(blue, 'disco')
+// const bluePlaysWithSox = blue.play.bind(blue, 'left sock', 'right sock')
+
+// function applySalesTax(taxRate, price) {
+//     return price + price * taxRate;
+// }
 
 // "null" for "this" means it doesn't matter what "this" is
-const applyCASalesTax = applySalesTax.bind(null, 0.0725);
-applyCASalesTax(50); // 53.63
-const applyTXSalesTax = applySalesTax.bind(null, 0.0625);
+// const applyCASalesTax = applySalesTax.bind(null, 0.0725);
+// applyCASalesTax(50); // 53.63
+// const applyTXSalesTax = applySalesTax.bind(null, 0.0625);
 
-const bobsMembership = {
-    name: 'Bob',
-    total: 250,
+// const bobsMembership = {
+//     name: 'Bob',
+//     total: 250,
 
-}
+// }
 
-const jillsMembership = {
-    name: 'Jill',
-    total: 899
-}
+// const jillsMembership = {
+//     name: 'Jill',
+//     total: 899
+// }
 
-function collectMonthlyFee(fee) {
-    const remaining = this.total - fee;
-    this.total = remaining;
-    return this.name + 'remaining balance:' + remaining;
-}
+// function collectMonthlyFee(fee) {
+//     const remaining = this.total - fee;
+//     this.total = remaining;
+//     return this.name + 'remaining balance:' + remaining;
+// }
 
-const collectBobsFee = collectMonthlyFee.bind(bobsMembership, 5)
-const collectJillsFee = collectMonthlyFee.bind(jillsMembership, 5)
+// const collectBobsFee = collectMonthlyFee.bind(bobsMembership, 5)
+// const collectJillsFee = collectMonthlyFee.bind(jillsMembership, 5)
 // const dog = {
 //     breed: 'black lab',
 //     name: 'elton'
