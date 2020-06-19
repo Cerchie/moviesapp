@@ -28,7 +28,37 @@ const dog = {
     dance: rocketDance
 }
 
+const blueDisco = blue.dance.bind(blue, 'disco')
+const bluePlaysWithSox = blue.play.bind(blue, 'left sock', 'right sock')
 
+function applySalesTax(taxRate, price) {
+    return price + price * taxRate;
+}
+
+// "null" for "this" means it doesn't matter what "this" is
+const applyCASalesTax = applySalesTax.bind(null, 0.0725);
+applyCASalesTax(50); // 53.63
+const applyTXSalesTax = applySalesTax.bind(null, 0.0625);
+
+const bobsMembership = {
+    name: 'Bob',
+    total: 250,
+
+}
+
+const jillsMembership = {
+    name: 'Jill',
+    total: 899
+}
+
+function collectMonthlyFee(fee) {
+    const remaining = this.total - fee;
+    this.total = remaining;
+    return this.name + 'remaining balance:' + remaining;
+}
+
+const collectBobsFee = collectMonthlyFee.bind(bobsMembership, 5)
+const collectJillsFee = collectMonthlyFee.bind(jillsMembership, 5)
 // const dog = {
 //     breed: 'black lab',
 //     name: 'elton'
